@@ -11,6 +11,8 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     post login_path, params: { session: { email: "", password: "" } }
     assert_template 'sessions/new'
     assert_not flash.empty?
+    # 2番目のウィンドウでログアウトをクリックするユーザーをシミュレートする
+    delete logout_path
     get root_path
     assert flash.empty?
   end
